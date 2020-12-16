@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.math.*;
 
-
-
 class MyData {
     // ATTENTION: Please don't modify anything on the MyData class.
     int value;
@@ -24,6 +22,9 @@ public class FinalExamEasy {
     // For existing functions, please don't change their name or return type.
 
     public boolean checkIfANumberIsEven(int number){
+        if(number % 2 == 1){
+            return true;
+        }
         /* TODO Question 1
         Write a program called checkIfANumberIsEven which
         checks if the int variable "number" is odd (return true),
@@ -33,11 +34,22 @@ public class FinalExamEasy {
         1, 3, 5, 7, 9 are odd.
         Please don't modify the return type (boolean).
         */
-        // TODO: write your code here.
-        return false; // TODO return something else
+        else {// TODO: write your code here.
+            return false;
+        }// TODO return something else
     }
 
     public String getDayOfTheWeek(int dayNumber){
+        switch(dayNumber){
+            case 1: return "Monday";
+            case 2: return "Tuesday";
+            case 3: return "Wednesday";
+            case 4: return "Thursday";
+            case 5: return "Friday";
+            case 6: return "Saturday";
+            case 7: return "Sunday";
+            default: return "FinalExamDay";
+        }
         /* TODO Question 2
          Write a program called getDayOfTheWeek which returns
          "Monday", "Tuesday", "Wednesday", "Thursday",
@@ -48,7 +60,7 @@ public class FinalExamEasy {
          Please don't modify the return type (String).
          */
         // TODO: write your code here.
-        return "FinalExamDay"; // TODO return something else
+        // TODO return something else
     }
 
     public double computePIWithSeriesExpansion(int N){
@@ -67,7 +79,13 @@ public class FinalExamEasy {
 
         The N argument will be greater or equal to 3. And will always be an odd number.
         */
-        double pi = 1.0;
+
+        double pi = 4.0;
+        double x = 1.0;
+        for (double i = 3.0; i <= N; i = i + 2) {
+            pi = pi - 4 * (1 / i) * x;
+            x = x * (-1);
+        }
         // TODO: write your code here.
         return pi;
     }
@@ -115,7 +133,14 @@ public class FinalExamEasy {
          You don't need to write the print function. Do things with the arr2d then it's OK.
          */
         // TODO: write your code here.
-
+//        while(size >= 0){
+//            for(int i = 0; i < arr2d.length; i--){
+//                for(int j = 0; j < arr2d[i].length; j++) {
+//                    System.out.print(" ");
+//                }
+//                System.out.println();
+//            }
+//        }
         print2DIntArrayAndChangeNegativeToZero(arr2d); // Don't change this line of code.
         return arr2d; // Don't change this line of code.
     }
@@ -140,7 +165,21 @@ public class FinalExamEasy {
          You don't need to write the print function. Do things with the arr2d then it's OK.
          */
         // TODO: write your code here.
-
+        int number = 0;
+        int x = size;
+        for (int i = 0; i < size; i++){
+            number = x;
+            for (int j = 0; j < size; j++){
+                arr2d[i][j] = number;
+                number--;
+            }
+            number = x;
+            for (int k = size; k < size*2; k++){
+                arr2d[i][k] = number;
+                number--;
+            }
+            x--;
+        }
         print2DIntArrayAndChangeNegativeToZero(arr2d); // Don't change this line of code.
         return arr2d; // Don't change this line of code.
     }
@@ -183,6 +222,10 @@ public class FinalExamEasy {
          */
 
         // TODO: write your code here.
+        hashMap.put("One", new MyData(N));
+        hashMap.put("Two", new MyData(N*2));
+        hashMap.put("Three", new MyData(N*3));
+        hashMap.put("Four", new MyData(N*4));
 
         return hashMap; // Don't change this line of code.
     }
@@ -215,8 +258,16 @@ public class FinalExamEasy {
 
         */
         // TODO: write your code here.
+        int x = Integer.MIN_VALUE;
+        int index = 0;
+        for(int i = 0; i < arrMyData.length; i++) {
+            if(x< arrMyData[i].value) {
+                x = arrMyData[i].value;
+                index = i;
+            }
+        }
 
-        return null; // TODO return something else
+        return arrMyData[index]; // TODO return something else
     }
 
     public MyData Question9(MyData[] arrMyData){
@@ -229,8 +280,18 @@ public class FinalExamEasy {
 
         */
         // TODO: write your code here.
-
-        return null; // TODO return something else
+        int x = Integer.MIN_VALUE;
+        int y = Integer.MIN_VALUE;
+        int index = 0;
+        for(int i = 0; i < arrMyData.length; i++) {
+            if(x< arrMyData[i].value) {
+                x = arrMyData[i].value;
+            } else if (y < arrMyData[i].value) {
+                y = arrMyData[i].value;
+                index = i;
+            }
+        }
+        return arrMyData[index]; // TODO return something else
     }
 
     public MyData Question10(MyData[] arrMyData){
@@ -240,7 +301,14 @@ public class FinalExamEasy {
         When tested, the length of input arrMyData will be at least 2. So don't bother to check that.
         */
         // TODO: write your code here.
-
-        return null; // TODO return something else
+        int min = Integer.MAX_VALUE;
+        int index = 0;
+        for(int i = 0; i < arrMyData.length; i++) {
+            if(min == Math.abs(5 - arrMyData[i].value)){
+                min = arrMyData[i].value;
+                index = i;
+            }
+        }
+        return arrMyData[index];
     }
 }
